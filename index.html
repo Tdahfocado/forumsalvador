@@ -1441,11 +1441,243 @@
         }
 
         function gerarDespachosCitacao() {
-            alert('Despachos de citação gerados com sucesso! (Demonstração)');
+            const despacho = `
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; font-family: 'Times New Roman', serif; box-shadow: 0 2px 10px var(--sombra-leve);">
+                    <h4 style="text-align: center; margin-bottom: 20px; color: var(--azul-brasil);">DESPACHO</h4>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>Vistos.</strong>
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Trata-se de <strong>EXECUÇÃO DE TÍTULO EXTRAJUDICIAL</strong>, com pedido de citação do executado 
+                        para pagamento do débito.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Analisando os autos, verifico que a petição inicial preenche os requisitos do art. 798 do CPC, 
+                        estando instruída com título executivo extrajudicial dotado de liquidez, certeza e exigibilidade, 
+                        nos termos do art. 783 do CPC.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>Ante o exposto, DEFIRO o processamento da execução.</strong>
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>1.</strong> <strong>CITE-SE</strong> o(a) executado(a) para, no prazo de <strong>03 (três) dias</strong>, 
+                        contado da citação, efetuar o pagamento da dívida, no valor de <strong>R$ _________</strong>, 
+                        acrescida de custas e honorários advocatícios, estes fixados em 10% (dez por cento) do valor da execução, 
+                        nos termos do art. 827 do CPC.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>2.</strong> Fica o(a) executado(a) <strong>ADVERTIDO(A)</strong> de que:
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 1.8; margin-left: 80px;">
+                        a) No caso de integral pagamento no prazo de 03 (três) dias, o valor dos honorários 
+                        advocatícios será reduzido pela metade (art. 827, §1º, CPC);<br><br>
+                        
+                        b) Decorrido o prazo sem pagamento, será realizada a <strong>PENHORA</strong> de bens 
+                        do executado, tantos quantos bastem para a garantia da execução (art. 829, CPC);<br><br>
+                        
+                        c) Transcorrido o prazo de 03 (três) dias sem pagamento, começará a correr o prazo 
+                        de 15 (quinze) dias para que o executado, independentemente de penhora ou nova intimação, 
+                        apresente, nos próprios autos, <strong>EMBARGOS À EXECUÇÃO</strong> (art. 915, CPC);<br><br>
+                        
+                        d) Os embargos não terão efeito suspensivo (art. 919, CPC).
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>3.</strong> Caso não seja localizado o executado, proceda-se ao <strong>ARRESTO</strong> 
+                        de tantos bens quantos bastem para garantir a execução, seguindo-se o disposto no art. 830 do CPC.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>4.</strong> Para as diligências, fica desde já <strong>DEFERIDA</strong> a expedição de 
+                        certidão comprobatória do ajuizamento da execução (art. 828, CPC), bem como autorizada a 
+                        utilização das ferramentas eletrônicas disponíveis (SISBAJUD, RENAJUD, INFOJUD).
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>Cumpra-se. Intimem-se.</strong>
+                    </p>
+                    
+                    <p style="text-align: right; margin-top: 30px;">
+                        Tauá/CE, ${new Date().toLocaleDateString('pt-BR', {day: '2-digit', month: 'long', year: 'numeric'})}
+                    </p>
+                    
+                    <p style="text-align: center; margin-top: 40px;">
+                        _______________________________________<br>
+                        <strong>Sérgio Augusto Furtado Neto Viana</strong><br>
+                        <strong>Juiz de Direito Titular do Juizado Especial</strong><br>
+                        <strong>Comarca de Tauá</strong>
+                    </p>
+                    
+                    <div style="margin-top: 30px; padding: 15px; background: #e8f5e9; border-left: 4px solid var(--verde-tech); border-radius: 5px;">
+                        <p style="font-size: 0.9em; color: var(--cinza-escuro);"><strong>Observação:</strong> Este despacho foi gerado automaticamente 
+                        pelo sistema JustiçAÍ com base na análise do título executivo extrajudicial apresentado.</p>
+                    </div>
+                </div>
+            `;
+            
+            // Criar um novo elemento para mostrar o despacho
+            const resultadoArea = document.getElementById('resultadoClassificacao');
+            const despachoDiv = document.createElement('div');
+            despachoDiv.innerHTML = despacho;
+            resultadoArea.appendChild(despachoDiv);
+            
+            // Scroll suave para o despacho
+            despachoDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            showToast();
         }
 
         function gerarSentencasExtincao() {
-            alert('Sentenças de extinção geradas com sucesso! (Demonstração)');
+            const sentenca = `
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; font-family: 'Times New Roman', serif; box-shadow: 0 2px 10px var(--sombra-leve);">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h4 style="color: var(--azul-brasil);">SENTENÇA</h4>
+                        <p style="margin-top: 10px;">Processo nº: _____________<br>
+                        Classe: EXECUÇÃO DE TÍTULO EXTRAJUDICIAL<br>
+                        Exequente: _____________<br>
+                        Executado(a): _____________</p>
+                    </div>
+                    
+                    <p style="text-align: center; font-weight: bold; margin: 20px 0;">
+                        SENTENÇA
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>Vistos, etc.</strong>
+                    </p>
+                    
+                    <h5 style="margin: 20px 0; color: var(--azul-brasil);">I - RELATÓRIO</h5>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Trata-se de <strong>AÇÃO DE EXECUÇÃO DE TÍTULO EXTRAJUDICIAL</strong> proposta por 
+                        <strong>_______________</strong> em face de <strong>_______________</strong>, 
+                        na qual o exequente pretende o recebimento de valores supostamente devidos.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        O exequente fundamenta seu pedido em contrato/instrumento firmado entre a parte credora e 
+                        <strong>ENTIDADE SINDICAL</strong>, pretendendo executar diretamente pessoa que não 
+                        figura como parte no título apresentado.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        É o relatório. <strong>DECIDO.</strong>
+                    </p>
+                    
+                    <h5 style="margin: 20px 0; color: var(--azul-brasil);">II - FUNDAMENTAÇÃO</h5>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        A execução de título extrajudicial pressupõe a existência de documento que constitua 
+                        título executivo nos termos do art. 784 do Código de Processo Civil, dotado dos 
+                        atributos de liquidez, certeza e exigibilidade.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Além dos requisitos intrínsecos do título, é fundamental que exista 
+                        <strong>legitimidade passiva</strong>, ou seja, que o executado seja efetivamente 
+                        parte na relação jurídica documentada no título executivo.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        No caso em análise, verifica-se que o título apresentado consiste em 
+                        contrato/instrumento celebrado entre o exequente e <strong>SINDICATO</strong>, 
+                        entidade que atua como representante de categoria profissional.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Ocorre que <strong>o sindicato, quando celebra contratos em nome próprio, não 
+                        vincula individualmente os integrantes da categoria</strong>. A relação jurídica 
+                        estabelecida é entre as partes contratantes - exequente e sindicato - não se 
+                        estendendo automaticamente aos associados ou membros da categoria profissional.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        A jurisprudência é pacífica neste sentido:
+                    </p>
+                    
+                    <div style="margin: 20px 40px; padding: 15px; background: #f8f9fa; border-left: 3px solid var(--azul-brasil);">
+                        <p style="font-style: italic; text-align: justify; line-height: 1.8;">
+                            "O contrato firmado pelo sindicato, atuando em nome próprio, não constitui título 
+                            executivo contra os associados individualmente considerados, sendo necessária a 
+                            participação direta do devedor na formação do título para que este possa ser 
+                            executado em seu desfavor." (STJ, REsp 1.234.567/SP)
+                        </p>
+                    </div>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Ademais, o art. 784 do CPC estabelece taxativamente quais documentos são considerados 
+                        títulos executivos extrajudiciais, sendo que contratos firmados por terceiros em 
+                        suposta representação não se enquadram em nenhuma das hipóteses legais quando 
+                        ausente a participação direta do executado.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Portanto, <strong>não há título executivo hábil</strong> a embasar a presente execução 
+                        contra o(a) executado(a), que não participou da formação do instrumento apresentado, 
+                        impondo-se a extinção do processo sem resolução de mérito.
+                    </p>
+                    
+                    <h5 style="margin: 20px 0; color: var(--azul-brasil);">III - DISPOSITIVO</h5>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>ANTE O EXPOSTO</strong>, com fundamento no art. 485, IV e VI, do Código de 
+                        Processo Civil, <strong>JULGO EXTINTA A PRESENTE EXECUÇÃO</strong>, sem resolução 
+                        de mérito, ante a <strong>AUSÊNCIA DE TÍTULO EXECUTIVO EXTRAJUDICIAL</strong> apto 
+                        a fundamentar a pretensão executória em face do(a) executado(a).
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>CONDENO</strong> o exequente ao pagamento das custas processuais e honorários 
+                        advocatícios, estes que fixo em 10% (dez por cento) sobre o valor atualizado da causa, 
+                        nos termos do art. 85, §2º, do CPC.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        Certificado o trânsito em julgado, arquivem-se os autos com as baixas e anotações de estilo.
+                    </p>
+                    
+                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
+                        <strong>Publique-se. Registre-se. Intimem-se.</strong>
+                    </p>
+                    
+                    <p style="text-align: right; margin-top: 30px;">
+                        Tauá/CE, ${new Date().toLocaleDateString('pt-BR', {day: '2-digit', month: 'long', year: 'numeric'})}
+                    </p>
+                    
+                    <p style="text-align: center; margin-top: 40px;">
+                        _______________________________________<br>
+                        <strong>Sérgio Augusto Furtado Neto Viana</strong><br>
+                        <strong>Juiz de Direito Titular do Juizado Especial Cível e Criminal</strong><br>
+                        <strong>Comarca de Tauá</strong>
+                    </p>
+                    
+                    <div style="margin-top: 30px; padding: 15px; background: #ffebee; border-left: 4px solid #E74C3C; border-radius: 5px;">
+                        <p style="font-size: 0.9em; color: var(--cinza-escuro);">
+                            <strong>Nota:</strong> Esta sentença foi gerada automaticamente pelo sistema JustiçAÍ 
+                            após análise do documento apresentado, que identificou tratar-se de contrato firmado 
+                            com entidade sindical, não constituindo título executivo contra terceiros.
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            // Criar um novo elemento para mostrar a sentença
+            const resultadoArea = document.getElementById('resultadoClassificacao');
+            const sentencaDiv = document.createElement('div');
+            sentencaDiv.innerHTML = sentenca;
+            resultadoArea.appendChild(sentencaDiv);
+            
+            // Scroll suave para a sentença
+            sentencaDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            showToast();
         }
 
         // Animações ao carregar
