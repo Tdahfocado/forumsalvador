@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JustiçAÍ Salvador - Sistema OEA de Inovação Jurídica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>JustiçAÍ Salvador - Sistema Avançado de Inovação Jurídica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- PDF.js para leitura de PDFs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
@@ -12,23 +12,36 @@
     </script>
     <style>
         :root {
-            /* Paleta Profissional Brasil + Tech */
-            --verde-brasil: #009C3B;
-            --amarelo-brasil: #FFDF00;
-            --azul-brasil: #002776;
-            --azul-tech: #0066CC;
-            --azul-claro: #4A90E2;
-            --verde-tech: #00A86B;
-            --cinza-escuro: #2C3E50;
-            --cinza-medio: #7F8C8D;
-            --cinza-claro: #ECF0F1;
-            --branco: #FFFFFF;
-            --sombra-leve: rgba(0, 0, 0, 0.08);
-            --sombra-media: rgba(0, 0, 0, 0.12);
-            --sombra-forte: rgba(0, 0, 0, 0.20);
-            --gradiente-principal: linear-gradient(135deg, #002776 0%, #0066CC 50%, #4A90E2 100%);
-            --gradiente-verde: linear-gradient(135deg, #009C3B 0%, #00A86B 100%);
-            --gradiente-amarelo: linear-gradient(135deg, #FFDF00 0%, #FFE53B 100%);
+            /* Paleta Moderna Tech + Jurídica */
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #22c55e;
+            --info: #06b6d4;
+            
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --bg-hover: #475569;
+            
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            
+            --border: #475569;
+            --shadow: rgba(0, 0, 0, 0.5);
+            
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-success: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            --gradient-danger: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-info: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            
+            --animation-speed: 0.3s;
         }
 
         * {
@@ -38,27 +51,49 @@
         }
 
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: var(--bg-primary);
             min-height: 100vh;
-            color: var(--cinza-escuro);
+            color: var(--text-primary);
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Container principal responsivo */
+        /* Background animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.2), transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(100, 200, 255, 0.2), transparent 50%);
+            z-index: -1;
+            animation: bgAnimation 20s ease infinite;
+        }
+
+        @keyframes bgAnimation {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 20px;
         }
 
-        /* Header Profissional */
+        /* Header Futurista */
         .header {
-            background: var(--branco);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 20px var(--sombra-leve);
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
             position: relative;
             overflow: hidden;
         }
@@ -69,234 +104,304 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: var(--gradiente-principal);
+            height: 2px;
+            background: var(--gradient-primary);
+            animation: slideGradient 3s linear infinite;
+        }
+
+        @keyframes slideGradient {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .header-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
         }
 
         .logo-container {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             margin-bottom: 20px;
         }
 
         .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradiente-principal);
-            border-radius: 12px;
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: white;
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .logo-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5em;
-            font-weight: 800;
-            background: var(--gradiente-principal);
+            font-size: 3em;
+            font-weight: 900;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }
 
         .subtitle {
-            font-size: 1.1em;
-            color: var(--cinza-medio);
-            font-weight: 400;
-            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-weight: 300;
         }
 
         .event-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: var(--gradiente-verde);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+            gap: 12px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 12px 24px;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9em;
-            box-shadow: 0 2px 8px rgba(0, 156, 59, 0.3);
+            font-size: 0.95em;
+            animation: glow 2s ease-in-out infinite;
         }
 
-        /* Grid de Módulos Responsivo */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.5); }
+        }
+
+        /* Cards Grid */
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            margin: 25px 0;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
 
         .module-card {
-            background: var(--branco);
-            border-radius: 12px;
-            padding: 25px;
+            background: rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all var(--animation-speed) ease;
             position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px var(--sombra-leve);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity var(--animation-speed) ease;
+        }
+
+        .module-card:hover::before {
+            opacity: 0.3;
         }
 
         .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px var(--sombra-media);
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .module-card.featured {
             grid-column: span 2;
-            background: linear-gradient(135deg, rgba(0, 39, 118, 0.02), rgba(0, 102, 204, 0.02));
-            border: 2px solid var(--azul-claro);
+            background: rgba(30, 64, 175, 0.1);
         }
 
         .module-header {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
         .module-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradiente-principal);
-            border-radius: 10px;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: white;
+            font-size: 28px;
             flex-shrink: 0;
-        }
-
-        .module-info {
-            flex: 1;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
         }
 
         .module-title {
-            font-size: 1.2em;
+            font-size: 1.4em;
             font-weight: 700;
-            color: var(--azul-brasil);
-            margin-bottom: 5px;
-            font-family: 'Poppins', sans-serif;
+            color: var(--text-primary);
+            margin-bottom: 8px;
         }
 
         .module-description {
-            color: var(--cinza-medio);
-            font-size: 0.9em;
-            line-height: 1.5;
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            line-height: 1.6;
         }
 
-        /* Formulários Modernos */
+        /* Forms Modernos */
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 500;
-            color: var(--cinza-escuro);
+            color: var(--text-primary);
             font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .form-input, 
-        .form-select, 
+        .form-input,
+        .form-select,
         .form-textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
+            padding: 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
             font-size: 15px;
-            transition: all 0.2s;
-            font-family: 'Roboto', sans-serif;
-            background: white;
+            transition: all var(--animation-speed) ease;
+            font-family: inherit;
         }
 
-        .form-input:focus, 
-        .form-select:focus, 
+        .form-input:focus,
+        .form-select:focus,
         .form-textarea:focus {
             outline: none;
-            border-color: var(--azul-tech);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+            border-color: var(--primary-light);
+            background: var(--bg-card);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
         .form-textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
 
         .form-checkbox {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9em;
+            gap: 10px;
+            cursor: pointer;
         }
 
-        /* Botões Profissionais */
+        .form-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* Botões Futuristas */
         .btn {
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all var(--animation-speed) ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-family: 'Poppins', sans-serif;
-            text-transform: none;
-            letter-spacing: 0;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
-            background: var(--gradiente-principal);
+            background: var(--gradient-primary);
             color: white;
-            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.25);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.35);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
         }
 
         .btn-success {
-            background: var(--gradiente-verde);
-            color: white;
-            box-shadow: 0 2px 8px rgba(0, 156, 59, 0.25);
+            background: var(--gradient-success);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 15px rgba(132, 250, 176, 0.4);
         }
 
-        .btn-success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 156, 59, 0.35);
+        .btn-danger {
+            background: var(--gradient-danger);
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
         }
 
         .btn-full {
             width: 100%;
         }
 
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
         /* Resultados */
         .result-box {
             display: none;
-            background: #f8f9fa;
-            border-left: 4px solid var(--azul-tech);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            animation: slideIn 0.3s ease-out;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 25px;
+            animation: slideIn 0.4s ease-out;
         }
 
         .result-box.show {
@@ -306,7 +411,7 @@
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -315,228 +420,286 @@
         }
 
         .result-title {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: var(--azul-brasil);
-            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .result-content {
-            background: white;
-            padding: 15px;
-            border-radius: 6px;
-            font-size: 0.95em;
-            line-height: 1.6;
-            color: var(--cinza-escuro);
-        }
-
-        /* Features Grid */
-        .features-section {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 2px 20px var(--sombra-leve);
-        }
-
-        .features-title {
-            text-align: center;
-            color: var(--azul-brasil);
-            margin-bottom: 25px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-        }
-
-        .feature-card {
-            background: #f8f9fa;
-            border-radius: 10px;
+            background: var(--bg-secondary);
             padding: 20px;
-            text-align: center;
-            transition: all 0.2s;
+            border-radius: 12px;
+            color: var(--text-primary);
+            line-height: 1.8;
         }
 
-        .feature-card:hover {
-            background: var(--cinza-claro);
-            transform: translateY(-2px);
-        }
-
-        .feature-emoji {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .feature-title {
-            font-weight: 600;
-            color: var(--cinza-escuro);
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        .feature-desc {
-            font-size: 0.8em;
-            color: var(--cinza-medio);
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 40px;
-            padding: 30px;
-            background: var(--branco);
-            border-radius: 16px 16px 0 0;
-            text-align: center;
-            box-shadow: 0 -2px 20px var(--sombra-leve);
-        }
-
-        .footer-author {
-            font-weight: 600;
-            color: var(--azul-brasil);
-            margin-bottom: 5px;
-        }
-
-        .footer-role {
-            color: var(--cinza-medio);
-            font-size: 0.9em;
-            margin-bottom: 20px;
-        }
-
-        .footer-copyright {
-            color: var(--cinza-medio);
-            font-size: 0.85em;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--cinza-claro);
-        }
-
-        /* Badge */
+        /* Badges */
         .badge {
             display: inline-block;
-            padding: 4px 12px;
-            background: var(--azul-claro);
+            padding: 6px 12px;
+            background: var(--gradient-info);
             color: white;
             border-radius: 20px;
             font-size: 0.75em;
             font-weight: 600;
-            margin-left: 8px;
-        }
-
-        .badge-new {
-            background: var(--verde-tech);
+            margin-left: 10px;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        /* Status de Processamento */
-        .processing-status {
-            display: none;
-            text-align: center;
-            padding: 20px;
+        /* Tabelas */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
         }
 
-        .processing-icon {
-            font-size: 40px;
-            animation: spin 2s linear infinite;
-            margin-bottom: 10px;
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table th {
+            background: var(--bg-card);
+            color: var(--primary-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+
+        .table tr:hover {
+            background: var(--bg-hover);
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 20px 0;
         }
 
         .progress-bar {
-            background: var(--cinza-claro);
-            height: 8px;
-            border-radius: 4px;
+            background: var(--bg-secondary);
+            height: 10px;
+            border-radius: 10px;
             overflow: hidden;
-            margin: 15px 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .progress-fill {
-            background: var(--gradiente-principal);
+            background: var(--gradient-primary);
             height: 100%;
             width: 0%;
-            transition: width 0.3s;
-            border-radius: 4px;
+            transition: width 0.4s ease;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.5);
         }
 
-        /* Responsividade Mobile */
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 9999;
+            max-width: 400px;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-title {
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast-message {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 24px 24px 0 0;
+            text-align: center;
+        }
+
+        .footer-author {
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .footer-role {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.85em;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all var(--animation-speed) ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        /* Pills/Tags */
+        .pills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .pill {
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--animation-speed) ease;
+        }
+
+        .pill:hover,
+        .pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                padding: 15px;
             }
 
             .header {
-                padding: 20px;
-                margin-bottom: 20px;
+                padding: 25px;
             }
 
             .logo-title {
-                font-size: 1.8em;
-            }
-
-            .subtitle {
-                font-size: 1em;
+                font-size: 2em;
             }
 
             .modules-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 20px;
             }
 
             .module-card.featured {
                 grid-column: span 1;
             }
 
-            .module-header {
-                flex-direction: row;
-                align-items: center;
-            }
-
-            .module-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .module-title {
-                font-size: 1.1em;
+            .form-row {
+                grid-template-columns: 1fr;
             }
 
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 15px;
             }
 
-            .feature-card {
-                padding: 15px;
+            .btn-group {
+                flex-direction: column;
             }
 
-            .feature-emoji {
-                font-size: 2em;
-            }
-
-            .btn {
-                padding: 12px 20px;
-                font-size: 14px;
+            .toast {
+                right: 15px;
+                left: 15px;
+                max-width: none;
             }
         }
 
-        /* Responsividade Tablet */
         @media (min-width: 769px) and (max-width: 1024px) {
             .modules-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -551,150 +714,70 @@
             }
         }
 
-        /* Orientação Landscape Mobile */
-        @media (max-width: 896px) and (orientation: landscape) {
-            .header {
-                padding: 15px;
-            }
-
-            .logo-title {
-                font-size: 1.5em;
-            }
-
-            .modules-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .module-card {
-                padding: 15px;
-            }
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--branco);
-            padding: 16px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px var(--sombra-media);
-            display: none;
-            z-index: 2000;
-            border-left: 4px solid var(--verde-tech);
-            max-width: 350px;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .toast.show {
-            display: block;
-        }
-
-        .toast-title {
-            font-weight: 600;
-            color: var(--azul-brasil);
-            margin-bottom: 4px;
-        }
-
-        .toast-message {
-            color: var(--cinza-medio);
-            font-size: 0.9em;
-        }
-
-        /* Floating Action Button */
-        .fab {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 56px;
-            height: 56px;
-            background: var(--gradiente-principal);
+        /* Animação de Loading */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 1000;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
         }
 
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        /* Classificador Section */
-        .classifier-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
+        /* Scrollbar Customizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
         }
 
-        .classifier-result {
-            background: white;
-            padding: 20px;
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
             border-radius: 10px;
-            border: 2px solid var(--cinza-claro);
         }
 
-        .classifier-result.type-a {
-            border-color: var(--verde-tech);
-            background: linear-gradient(135deg, rgba(0, 168, 107, 0.05), rgba(0, 168, 107, 0.02));
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
         }
 
-        .classifier-result.type-b {
-            border-color: #E74C3C;
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), rgba(231, 76, 60, 0.02));
-        }
-
-        .classifier-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .file-list {
-            max-height: 200px;
-            overflow-y: auto;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 6px;
-            margin: 10px 0;
-        }
-
-        .file-item {
-            padding: 8px;
-            border-bottom: 1px solid var(--cinza-claro);
+        /* Highlight de Código */
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9em;
+            overflow-x: auto;
         }
 
-        .file-item:last-child {
-            border-bottom: none;
+        /* Separador */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 30px 0;
+            position: relative;
         }
 
-        /* Responsividade para Classificador */
-        @media (max-width: 768px) {
-            .classifier-grid {
-                grid-template-columns: 1fr;
-            }
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -707,7 +790,7 @@
                     <div class="logo-icon">⚖️</div>
                     <h1 class="logo-title">JustiçAÍ Salvador</h1>
                 </div>
-                <p class="subtitle">Sistema de Inovação Jurídica com Inteligência Artificial</p>
+                <p class="subtitle">Sistema Avançado de Inovação Jurídica com Inteligência Artificial</p>
                 <div class="event-badge">
                     <span>🌐</span>
                     <span>V FÓRUM OEA - Salvador/BA | 9-11 Outubro 2025</span>
@@ -715,17 +798,17 @@
             </div>
         </div>
 
-        <!-- Módulos Grid -->
+        <!-- Módulos -->
         <div class="modules-grid">
-            <!-- Classificador de Execuções (Destaque) -->
+            <!-- Classificador de Execuções -->
             <div class="module-card featured">
                 <div class="module-header">
                     <div class="module-icon">🎯</div>
-                    <div class="module-info">
-                        <h2 class="module-title">Classificador de Execuções em Massa</h2>
-                        <span class="badge badge-new">DEMONSTRAÇÃO OEA</span>
+                    <div>
+                        <h2 class="module-title">Classificador Inteligente de Execuções</h2>
+                        <span class="badge">DEMONSTRAÇÃO OEA</span>
                         <p class="module-description">
-                            Solução para análise automática de 700+ execuções trabalhistas. IA identifica contratos válidos e inválidos instantaneamente.
+                            Sistema avançado para análise automática de contratos trabalhistas com IA.
                         </p>
                     </div>
                 </div>
@@ -734,109 +817,404 @@
                     <div class="form-group">
                         <label class="form-label">Upload de Contratos (PDFs)</label>
                         <input type="file" class="form-input" id="contratos" multiple accept=".pdf" required>
-                        <small style="color: var(--cinza-medio); font-size: 0.85em;">Selecione múltiplos PDFs (máximo 50 arquivos)</small>
-                    </div>
-                    
-                    <div id="preview-arquivos" style="display: none;">
-                        <div class="form-label">Arquivos Selecionados:</div>
-                        <div id="lista-arquivos" class="file-list"></div>
+                        <small style="color: var(--text-muted);">Selecione múltiplos PDFs para análise</small>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-full">
                         <span>🚀</span>
-                        <span>CLASSIFICAR E GERAR DECISÕES</span>
+                        <span>Analisar Contratos</span>
                     </button>
                 </form>
-                
-                <div id="processando-classificacao" class="processing-status">
-                    <div class="processing-icon">⚙️</div>
-                    <h3 style="color: var(--azul-brasil);">Processando com IA...</h3>
-                    <p id="status-processamento" style="color: var(--cinza-medio);">Analisando contratos...</p>
-                    <div class="progress-bar">
-                        <div id="barra-progresso" class="progress-fill"></div>
-                    </div>
-                </div>
                 
                 <div id="resultadoClassificacao" class="result-box"></div>
             </div>
 
-            <!-- Dosimetria Inteligente -->
+            <!-- Dosimetria Avançada -->
             <div class="module-card">
                 <div class="module-header">
                     <div class="module-icon">⚖️</div>
-                    <div class="module-info">
-                        <h2 class="module-title">Dosimetria Inteligente</h2>
-                        <p class="module-description">Cálculo automático de penas com base em jurisprudência do STF e STJ</p>
+                    <div>
+                        <h2 class="module-title">Dosimetria Avançada STJ</h2>
+                        <p class="module-description">Cálculo completo de penas com jurisprudência do STJ</p>
                     </div>
                 </div>
                 
                 <form id="formDosimetria">
                     <div class="form-group">
-                        <label class="form-label">Pena Mínima (meses)</label>
-                        <input type="number" class="form-input" id="penaMinima" value="6" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Pena Máxima (meses)</label>
-                        <input type="number" class="form-input" id="penaMaxima" value="36" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Circunstâncias Desfavoráveis</label>
-                        <select class="form-select" id="circunstancias" multiple size="3">
-                            <option value="culpabilidade">Culpabilidade</option>
-                            <option value="antecedentes">Antecedentes</option>
-                            <option value="conduta">Conduta Social</option>
-                            <option value="personalidade">Personalidade</option>
-                            <option value="motivos">Motivos</option>
+                        <label class="form-label">Tipo Penal</label>
+                        <select class="form-select" id="tipoPenal" onchange="atualizarPenas()">
+                            <option value="">Selecione o crime...</option>
+                            <option value="furto">Art. 155 - Furto</option>
+                            <option value="roubo">Art. 157 - Roubo</option>
+                            <option value="estelionato">Art. 171 - Estelionato</option>
+                            <option value="homicidio">Art. 121 - Homicídio</option>
+                            <option value="lesao">Art. 129 - Lesão Corporal</option>
+                            <option value="trafico">Art. 33 Lei 11.343/06 - Tráfico</option>
+                            <option value="receptacao">Art. 180 - Receptação</option>
+                            <option value="ameaca">Art. 147 - Ameaça</option>
+                            <option value="apropriacao">Art. 168 - Apropriação Indébita</option>
+                            <option value="peculato">Art. 312 - Peculato</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">CALCULAR COM IA</button>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Pena Mínima</label>
+                            <input type="text" class="form-input" id="penaMinima" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Pena Máxima</label>
+                            <input type="text" class="form-input" id="penaMaxima" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Regime</label>
+                            <input type="text" class="form-input" id="regimePena" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Circunstâncias Judiciais Desfavoráveis (Art. 59 CP)</label>
+                        <div class="pills-container">
+                            <label class="pill">
+                                <input type="checkbox" value="culpabilidade" style="margin-right: 5px;">
+                                Culpabilidade
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" value="antecedentes" style="margin-right: 5px;">
+                                Antecedentes
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" value="conduta" style="margin-right: 5px;">
+                                Conduta Social
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" value="personalidade" style="margin-right: 5px;">
+                                Personalidade
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" value="motivos" style="margin-right: 5px;">
+                                Motivos
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" value="circunstancias" style="margin-right: 5px;">
+                                Circunstâncias
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" value="consequencias" style="margin-right: 5px;">
+                                Consequências
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" value="vitima" style="margin-right: 5px;">
+                                Comportamento da Vítima
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Agravantes</label>
+                            <select class="form-select" multiple size="3">
+                                <option value="reincidencia">Reincidência</option>
+                                <option value="motivo_futeil">Motivo Fútil/Torpe</option>
+                                <option value="traicao">Traição/Emboscada</option>
+                                <option value="crueldade">Crueldade</option>
+                                <option value="menor">Contra Menor</option>
+                                <option value="idoso">Contra Idoso</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Atenuantes</label>
+                            <select class="form-select" multiple size="3">
+                                <option value="menor21">Menor de 21 anos</option>
+                                <option value="maior70">Maior de 70 anos</option>
+                                <option value="confissao">Confissão Espontânea</option>
+                                <option value="desconhecimento">Desconhecimento da Lei</option>
+                                <option value="motivo_nobre">Motivo Nobre</option>
+                                <option value="coacao">Coação Moral</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Causa de Aumento</label>
+                            <select class="form-select" id="causaAumento">
+                                <option value="0">Nenhuma</option>
+                                <option value="0.166">1/6</option>
+                                <option value="0.333">1/3</option>
+                                <option value="0.5">1/2</option>
+                                <option value="0.666">2/3</option>
+                                <option value="1">Dobro</option>
+                                <option value="2">Triplo</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Causa de Diminuição</label>
+                            <select class="form-select" id="causaDiminuicao">
+                                <option value="0">Nenhuma</option>
+                                <option value="0.166">1/6</option>
+                                <option value="0.333">1/3</option>
+                                <option value="0.5">1/2</option>
+                                <option value="0.666">2/3</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Concurso de Crimes</label>
+                        <select class="form-select" id="concursoCrimes">
+                            <option value="nenhum">Nenhum</option>
+                            <option value="material">Concurso Material</option>
+                            <option value="formal">Concurso Formal</option>
+                            <option value="continuado">Crime Continuado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Número de Crimes (se houver concurso)</label>
+                            <input type="number" class="form-input" id="numeroCrimes" value="1" min="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Dias-Multa</label>
+                            <input type="number" class="form-input" id="diasMulta" placeholder="10-360 dias" min="10" max="360">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>⚖️</span>
+                        <span>Calcular Dosimetria Completa</span>
+                    </button>
                 </form>
                 
                 <div id="resultadoDosimetria" class="result-box"></div>
             </div>
 
-            <!-- SELIC em Tempo Real -->
+            <!-- Calculadora Avançada de Correção -->
             <div class="module-card">
                 <div class="module-header">
                     <div class="module-icon">💰</div>
-                    <div class="module-info">
-                        <h2 class="module-title">SELIC em Tempo Real</h2>
-                        <p class="module-description">Atualização monetária com dados do Banco Central</p>
+                    <div>
+                        <h2 class="module-title">Correção Monetária Avançada</h2>
+                        <p class="module-description">Múltiplos índices e cálculos complexos</p>
                     </div>
                 </div>
                 
-                <form id="formSelic">
+                <form id="formCorrecao">
                     <div class="form-group">
-                        <label class="form-label">Valor Original (R$)</label>
-                        <input type="number" class="form-input" id="valorOriginal" step="0.01" placeholder="1000.00" required>
+                        <label class="form-label">Tipo de Cálculo</label>
+                        <select class="form-select" id="tipoCalculo">
+                            <option value="simples">Correção Simples</option>
+                            <option value="juros">Com Juros Compostos</option>
+                            <option value="danos">Danos Morais</option>
+                            <option value="trabalhista">Débito Trabalhista</option>
+                            <option value="previdenciario">Débito Previdenciário</option>
+                        </select>
                     </div>
+                    
                     <div class="form-group">
-                        <label class="form-label">Data Inicial</label>
-                        <input type="date" class="form-input" id="dataInicial" required>
+                        <label class="form-label">Índice de Correção</label>
+                        <select class="form-select" id="indiceCorrecao">
+                            <option value="selic">SELIC</option>
+                            <option value="ipca">IPCA-E</option>
+                            <option value="igpm">IGP-M</option>
+                            <option value="inpc">INPC</option>
+                            <option value="tr">TR + 0,5%</option>
+                            <option value="poupanca">Poupança</option>
+                        </select>
                     </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Valor Original (R$)</label>
+                            <input type="number" class="form-input" id="valorOriginal" step="0.01" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Taxa de Juros (% a.m.)</label>
+                            <input type="number" class="form-input" id="taxaJuros" step="0.01" placeholder="1% a.m.">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Data do Evento</label>
+                            <input type="date" class="form-input" id="dataEvento" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Data da Citação</label>
+                            <input type="date" class="form-input" id="dataCitacao">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Data Final</label>
+                            <input type="date" class="form-input" id="dataFinal" required>
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
-                        <label class="form-label">Data Final</label>
-                        <input type="date" class="form-input" id="dataFinal" required>
+                        <label class="form-label">Adicionais</label>
+                        <div class="pills-container">
+                            <label class="pill">
+                                <input type="checkbox" id="multa523" style="margin-right: 5px;">
+                                Multa 10% Art. 523 CPC
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" id="honorarios" style="margin-right: 5px;">
+                                Honorários 10%
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" id="custas" style="margin-right: 5px;">
+                                Custas Processuais
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-checkbox">
-                            <input type="checkbox" id="multa523">
-                            <span>Aplicar Multa 10% (Art. 523 CPC)</span>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">ATUALIZAR VALORES</button>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>💵</span>
+                        <span>Calcular Correção</span>
+                    </button>
                 </form>
                 
-                <div id="resultadoSelic" class="result-box"></div>
+                <div id="resultadoCorrecao" class="result-box"></div>
+            </div>
+
+            <!-- Prescrição Inteligente -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon">⏰</div>
+                    <div>
+                        <h2 class="module-title">Prescrição Penal Inteligente</h2>
+                        <p class="module-description">Cálculo completo com marcos interruptivos</p>
+                    </div>
+                </div>
+                
+                <form id="formPrescricao">
+                    <div class="form-group">
+                        <label class="form-label">Tipo Penal</label>
+                        <select class="form-select" id="tipoPenalPrescricao" onchange="atualizarPenaPrescricao()">
+                            <option value="">Selecione o crime...</option>
+                            <option value="furto">Art. 155 - Furto</option>
+                            <option value="roubo">Art. 157 - Roubo</option>
+                            <option value="estelionato">Art. 171 - Estelionato</option>
+                            <option value="homicidio">Art. 121 - Homicídio</option>
+                            <option value="lesao">Art. 129 - Lesão Corporal</option>
+                            <option value="trafico">Art. 33 Lei 11.343/06 - Tráfico</option>
+                            <option value="receptacao">Art. 180 - Receptação</option>
+                            <option value="ameaca">Art. 147 - Ameaça</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Pena Máxima Cominada</label>
+                            <input type="text" class="form-input" id="penaMaximaPrescricao" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Prescrição</label>
+                            <select class="form-select" id="tipoPrescricao">
+                                <option value="pretensao">Pretensão Punitiva</option>
+                                <option value="executoria">Executória</option>
+                                <option value="intercorrente">Intercorrente</option>
+                                <option value="retroativa">Retroativa</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Data do Fato</label>
+                            <input type="date" class="form-input" id="dataFatoPrescricao" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Data da Denúncia</label>
+                            <input type="date" class="form-input" id="dataDenuncia">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Data do Recebimento</label>
+                            <input type="date" class="form-input" id="dataRecebimento">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Marcos Interruptivos (Art. 117 CP)</label>
+                        <div id="marcosInterruptivos">
+                            <div class="form-row">
+                                <input type="date" class="form-input" placeholder="Data do marco">
+                                <select class="form-select">
+                                    <option value="recebimento">Recebimento da denúncia</option>
+                                    <option value="pronuncia">Pronúncia</option>
+                                    <option value="confirmacao">Confirmação da pronúncia</option>
+                                    <option value="sentenca">Sentença condenatória</option>
+                                    <option value="acordao">Acórdão condenatório</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="adicionarMarco()" style="margin-top: 10px;">
+                            <span>➕</span>
+                            <span>Adicionar Marco</span>
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Causas Suspensivas (Art. 116 CP)</label>
+                        <div class="pills-container">
+                            <label class="pill">
+                                <input type="checkbox" id="suspQuestao" style="margin-right: 5px;">
+                                Questão prejudicial
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" id="suspCitacao" style="margin-right: 5px;">
+                                Citação por edital
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" id="suspFuga" style="margin-right: 5px;">
+                                Réu foragido
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Condições do Réu</label>
+                        <div class="pills-container">
+                            <label class="pill">
+                                <input type="checkbox" id="menor21Prescricao" style="margin-right: 5px;">
+                                Menor de 21 anos (reduz pela metade)
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" id="maior70Prescricao" style="margin-right: 5px;">
+                                Maior de 70 anos (reduz pela metade)
+                            </label>
+                            <label class="pill">
+                                <input type="checkbox" id="reincidentePrescricao" style="margin-right: 5px;">
+                                Reincidente (aumenta 1/3)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>⏱️</span>
+                        <span>Calcular Prescrição</span>
+                    </button>
+                </form>
+                
+                <div id="resultadoPrescricao" class="result-box"></div>
             </div>
 
             <!-- Validador Blockchain -->
             <div class="module-card">
                 <div class="module-header">
                     <div class="module-icon">🔐</div>
-                    <div class="module-info">
+                    <div>
                         <h2 class="module-title">Validador Blockchain</h2>
-                        <p class="module-description">Validação de documentos com tecnologia blockchain</p>
+                        <p class="module-description">Integridade de documentos digitais</p>
                     </div>
                 </div>
                 
@@ -847,843 +1225,282 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Hash Original (opcional)</label>
-                        <input type="text" class="form-input" id="hashOriginal" placeholder="Digite o hash SHA-256">
+                        <input type="text" class="form-input" id="hashOriginal" placeholder="SHA-256">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">VALIDAR DOCUMENTO</button>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>🔍</span>
+                        <span>Validar Documento</span>
+                    </button>
                 </form>
                 
                 <div id="resultadoValidacao" class="result-box"></div>
             </div>
-
-            <!-- Minutas com GPT-4 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-icon">🤖</div>
-                    <div class="module-info">
-                        <h2 class="module-title">Minutas com GPT-4</h2>
-                        <p class="module-description">Geração automática de peças processuais</p>
-                    </div>
-                </div>
-                
-                <form id="formMinutas">
-                    <div class="form-group">
-                        <label class="form-label">Tipo de Peça</label>
-                        <select class="form-select" id="tipoPeca">
-                            <option value="sentenca">Sentença</option>
-                            <option value="decisao">Decisão Interlocutória</option>
-                            <option value="despacho">Despacho</option>
-                            <option value="acordao">Acórdão</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Processo</label>
-                        <input type="text" class="form-input" id="numeroProcesso" placeholder="0000000-00.2025.8.06.0000">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Resumo do Caso</label>
-                        <textarea class="form-textarea" id="resumoCaso" placeholder="Descreva o caso..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">GERAR COM IA</button>
-                </form>
-                
-                <div id="resultadoMinuta" class="result-box"></div>
-            </div>
-
-            <!-- Jurisprudência Neural -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-icon">🧠</div>
-                    <div class="module-info">
-                        <h2 class="module-title">Jurisprudência Neural</h2>
-                        <p class="module-description">Busca semântica em milhões de decisões</p>
-                    </div>
-                </div>
-                
-                <form id="formJurisprudencia">
-                    <div class="form-group">
-                        <label class="form-label">Tema Jurídico</label>
-                        <input type="text" class="form-input" id="temaJuridico" placeholder="Ex: dano moral, prisão preventiva">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Tribunal</label>
-                        <select class="form-select" id="tribunal">
-                            <option value="stf">STF</option>
-                            <option value="stj">STJ</option>
-                            <option value="tjce">TJCE</option>
-                            <option value="tjba">TJBA</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">BUSCAR PRECEDENTES</button>
-                </form>
-                
-                <div id="resultadoJurisprudencia" class="result-box"></div>
-            </div>
-
-            <!-- Calculadora de Prescrição -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-icon">⏰</div>
-                    <div class="module-info">
-                        <h2 class="module-title">Prescrição Smart</h2>
-                        <p class="module-description">Cálculo automático de prazos prescricionais</p>
-                    </div>
-                </div>
-                
-                <form id="formPrescricao">
-                    <div class="form-group">
-                        <label class="form-label">Tipo de Prescrição</label>
-                        <select class="form-select" id="tipoPrescricao">
-                            <option value="pretensao">Pretensão Punitiva</option>
-                            <option value="executoria">Executória</option>
-                            <option value="intercorrente">Intercorrente</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Pena Máxima (anos)</label>
-                        <input type="number" class="form-input" id="penaMaximaPrescricao" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Data do Fato</label>
-                        <input type="date" class="form-input" id="dataFato" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">CALCULAR PRAZO</button>
-                </form>
-                
-                <div id="resultadoPrescricao" class="result-box"></div>
-            </div>
         </div>
 
         <!-- Features Section -->
-        <div class="features-section">
-            <h2 class="features-title">Tecnologias Implementadas</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <div class="feature-title">IA Avançada</div>
+                <p class="feature-desc">Machine Learning</p>
+            </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-emoji">🤖</div>
-                    <div class="feature-title">GPT-4 Integration</div>
-                    <p class="feature-desc">IA avançada</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-emoji">⚡</div>
-                    <div class="feature-title">Tempo Real</div>
-                    <p class="feature-desc">Processamento instantâneo</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-emoji">🔐</div>
-                    <div class="feature-title">Blockchain</div>
-                    <p class="feature-desc">Segurança máxima</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-emoji">🌐</div>
-                    <div class="feature-title">Multi-idioma</div>
-                    <p class="feature-desc">PT, ES, EN</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-emoji">📱</div>
-                    <div class="feature-title">Mobile First</div>
-                    <p class="feature-desc">100% responsivo</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-emoji">☁️</div>
-                    <div class="feature-title">Cloud Native</div>
-                    <p class="feature-desc">Sempre disponível</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Tempo Real</div>
+                <p class="feature-desc">Processamento instantâneo</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Jurimetria</div>
+                <p class="feature-desc">Análise estatística</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <div class="feature-title">Blockchain</div>
+                <p class="feature-desc">Segurança máxima</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Responsivo</div>
+                <p class="feature-desc">Mobile First</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">☁️</div>
+                <div class="feature-title">Cloud Native</div>
+                <p class="feature-desc">Sempre online</p>
             </div>
         </div>
+
+        <div class="divider"></div>
 
         <!-- Footer -->
         <div class="footer">
             <div class="footer-author">Dr. Sérgio Augusto Furtado Neto Viana</div>
-            <div class="footer-role">Juiz de Direito - Comarca de Tauá/CE</div>
+            <div class="footer-role">Juiz de Direito Titular - Comarca de Tauá/CE</div>
             <div class="footer-role">Palestrante no V Fórum OEA Salvador 2025</div>
             
             <div class="footer-copyright">
-                © 2025 JustiçAÍ Salvador - Open Source - MIT License<br>
-                Tecnologia Brasileira para as Américas
+                © 2025 JustiçAÍ Salvador - Sistema Open Source - MIT License<br>
+                Tecnologia Brasileira para Modernização do Judiciário nas Américas
             </div>
         </div>
     </div>
 
-    <!-- Floating Action Button -->
-    <div class="fab" onclick="showToast()">
-        💬
-    </div>
-
-    <!-- Toast Notification -->
+    <!-- Toast -->
     <div id="toast" class="toast">
-        <div class="toast-title">🎉 Bem-vindo ao JustiçAÍ Salvador!</div>
-        <div class="toast-message">Sistema 100% funcional e gratuito para inovação jurídica</div>
+        <div class="toast-title">
+            <span>✨</span>
+            <span>Sistema JustiçAÍ</span>
+        </div>
+        <div class="toast-message">Cálculo realizado com sucesso!</div>
     </div>
 
     <script>
-        // Função para mostrar toast
-        function showToast() {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        // Base de dados de tipos penais
+        const tiposPenais = {
+            furto: { min: '1 ano', max: '4 anos', regime: 'Reclusão', minMeses: 12, maxMeses: 48 },
+            roubo: { min: '4 anos', max: '10 anos', regime: 'Reclusão', minMeses: 48, maxMeses: 120 },
+            estelionato: { min: '1 ano', max: '5 anos', regime: 'Reclusão', minMeses: 12, maxMeses: 60 },
+            homicidio: { min: '6 anos', max: '20 anos', regime: 'Reclusão', minMeses: 72, maxMeses: 240 },
+            lesao: { min: '3 meses', max: '1 ano', regime: 'Detenção', minMeses: 3, maxMeses: 12 },
+            trafico: { min: '5 anos', max: '15 anos', regime: 'Reclusão', minMeses: 60, maxMeses: 180 },
+            receptacao: { min: '1 ano', max: '4 anos', regime: 'Reclusão', minMeses: 12, maxMeses: 48 },
+            ameaca: { min: '1 mês', max: '6 meses', regime: 'Detenção', minMeses: 1, maxMeses: 6 },
+            apropriacao: { min: '1 ano', max: '4 anos', regime: 'Reclusão', minMeses: 12, maxMeses: 48 },
+            peculato: { min: '2 anos', max: '12 anos', regime: 'Reclusão', minMeses: 24, maxMeses: 144 }
+        };
+
+        // Atualizar penas na dosimetria
+        function atualizarPenas() {
+            const tipoPenal = document.getElementById('tipoPenal').value;
+            if (tipoPenal && tiposPenais[tipoPenal]) {
+                const tipo = tiposPenais[tipoPenal];
+                document.getElementById('penaMinima').value = tipo.min;
+                document.getElementById('penaMaxima').value = tipo.max;
+                document.getElementById('regimePena').value = tipo.regime;
+            } else {
+                document.getElementById('penaMinima').value = '';
+                document.getElementById('penaMaxima').value = '';
+                document.getElementById('regimePena').value = '';
+            }
         }
 
-        // Calculadora de Dosimetria
+        // Atualizar pena na prescrição
+        function atualizarPenaPrescricao() {
+            const tipoPenal = document.getElementById('tipoPenalPrescricao').value;
+            if (tipoPenal && tiposPenais[tipoPenal]) {
+                document.getElementById('penaMaximaPrescricao').value = tiposPenais[tipoPenal].max;
+            } else {
+                document.getElementById('penaMaximaPrescricao').value = '';
+            }
+        }
+
+        // Adicionar marco interruptivo
+        function adicionarMarco() {
+            const container = document.getElementById('marcosInterruptivos');
+            const novoMarco = document.createElement('div');
+            novoMarco.className = 'form-row';
+            novoMarco.style.marginTop = '10px';
+            novoMarco.innerHTML = `
+                <input type="date" class="form-input" placeholder="Data do marco">
+                <select class="form-select">
+                    <option value="recebimento">Recebimento da denúncia</option>
+                    <option value="pronuncia">Pronúncia</option>
+                    <option value="confirmacao">Confirmação da pronúncia</option>
+                    <option value="sentenca">Sentença condenatória</option>
+                    <option value="acordao">Acórdão condenatório</option>
+                </select>
+                <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">❌</button>
+            `;
+            container.appendChild(novoMarco);
+        }
+
+        // Toast notification
+        function showToast(message = 'Operação realizada com sucesso!') {
+            const toast = document.getElementById('toast');
+            toast.querySelector('.toast-message').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Calculadora de Dosimetria Completa
         document.getElementById('formDosimetria').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const penaMinima = parseInt(document.getElementById('penaMinima').value);
-            const penaMaxima = parseInt(document.getElementById('penaMaxima').value);
-            const circunstancias = Array.from(document.getElementById('circunstancias').selectedOptions).length;
+            const tipoPenal = document.getElementById('tipoPenal').value;
+            if (!tipoPenal) {
+                showToast('Selecione um tipo penal!');
+                return;
+            }
             
-            const intervalo = penaMaxima - penaMinima;
-            const aumentoCircunstancia = (intervalo / 8) * circunstancias;
-            const penaBase = Math.min(penaMinima + aumentoCircunstancia, penaMaxima);
+            const tipo = tiposPenais[tipoPenal];
+            let penaBase = tipo.minMeses;
+            
+            // 1ª Fase - Circunstâncias judiciais
+            const circunstancias = document.querySelectorAll('.pills-container input[type="checkbox"]:checked').length;
+            const aumentoPorCircunstancia = (tipo.maxMeses - tipo.minMeses) / 8;
+            penaBase += aumentoPorCircunstancia * circunstancias;
+            
+            // 2ª Fase - Agravantes e atenuantes
+            const agravantes = document.querySelectorAll('select[multiple]')[0].selectedOptions.length;
+            const atenuantes = document.querySelectorAll('select[multiple]')[1].selectedOptions.length;
+            const segundaFase = penaBase + (penaBase * 0.166 * agravantes) - (penaBase * 0.166 * atenuantes);
+            
+            // 3ª Fase - Causas de aumento e diminuição
+            const causaAumento = parseFloat(document.getElementById('causaAumento').value);
+            const causaDiminuicao = parseFloat(document.getElementById('causaDiminuicao').value);
+            let terceiraFase = segundaFase;
+            
+            if (causaDiminuicao > 0) {
+                terceiraFase -= terceiraFase * causaDiminuicao;
+            }
+            if (causaAumento > 0) {
+                terceiraFase += terceiraFase * causaAumento;
+            }
+            
+            // Concurso de crimes
+            const concurso = document.getElementById('concursoCrimes').value;
+            const numeroCrimes = parseInt(document.getElementById('numeroCrimes').value);
+            let penaFinal = terceiraFase;
+            
+            if (concurso === 'material') {
+                penaFinal = terceiraFase * numeroCrimes;
+            } else if (concurso === 'formal') {
+                penaFinal = terceiraFase + (terceiraFase * 0.166 * (numeroCrimes - 1));
+            } else if (concurso === 'continuado') {
+                penaFinal = terceiraFase + (terceiraFase * 0.666);
+            }
+            
+            // Dias-multa
+            const diasMulta = document.getElementById('diasMulta').value || 10;
+            const valorDiaMulta = (penaFinal / 12) * 100; // Proporcional à pena
+            
+            // Regime inicial
+            let regime = 'Aberto';
+            if (penaFinal > 96) regime = 'Fechado';
+            else if (penaFinal > 48) regime = 'Semiaberto';
             
             const resultado = document.getElementById('resultadoDosimetria');
             resultado.innerHTML = `
                 <div class="result-title">
-                    <span>🎯</span>
-                    <span>Resultado da Dosimetria</span>
+                    <span>⚖️</span>
+                    <span>Dosimetria Calculada - ${tipoPenal.toUpperCase()}</span>
                 </div>
                 <div class="result-content">
-                    <strong>Análise com IA:</strong><br>
-                    → Pena-base calculada: <strong>${penaBase.toFixed(0)} meses</strong><br>
-                    → ${circunstancias} circunstância(s) desfavorável(is)<br>
-                    → Tempo em anos: <strong>${(penaBase/12).toFixed(1)} anos</strong><br>
-                    <br>
-                    <small>💡 Cálculo baseado em 15.000 decisões do STJ</small>
+                    <h4>📊 ANÁLISE TRIFÁSICA (STJ)</h4>
+                    
+                    <div class="table-container">
+                        <table class="table">
+                            <tr>
+                                <th>Fase</th>
+                                <th>Cálculo</th>
+                                <th>Resultado</th>
+                            </tr>
+                            <tr>
+                                <td>1ª Fase - Pena-base</td>
+                                <td>${tipo.min} + ${circunstancias} circunstâncias</td>
+                                <td><strong>${(penaBase/12).toFixed(1)} anos</strong></td>
+                            </tr>
+                            <tr>
+                                <td>2ª Fase - Agravantes/Atenuantes</td>
+                                <td>${agravantes} agravantes - ${atenuantes} atenuantes</td>
+                                <td><strong>${(segundaFase/12).toFixed(1)} anos</strong></td>
+                            </tr>
+                            <tr>
+                                <td>3ª Fase - Causas de aumento/diminuição</td>
+                                <td>Aumento: ${(causaAumento*100).toFixed(0)}% | Diminuição: ${(causaDiminuicao*100).toFixed(0)}%</td>
+                                <td><strong>${(terceiraFase/12).toFixed(1)} anos</strong></td>
+                            </tr>
+                            <tr style="background: rgba(102, 126, 234, 0.2);">
+                                <td colspan="2"><strong>PENA DEFINITIVA</strong></td>
+                                <td><strong>${(penaFinal/12).toFixed(1)} anos (${penaFinal.toFixed(0)} meses)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <h4>⚖️ DISPOSITIVO</h4>
+                        <p><strong>Regime Inicial:</strong> ${regime}</p>
+                        <p><strong>Pena Pecuniária:</strong> ${diasMulta} dias-multa, no valor de 1/30 do salário mínimo cada</p>
+                        <p><strong>Valor Total da Multa:</strong> R$ ${(valorDiaMulta * diasMulta / 30).toFixed(2)}</p>
+                        ${concurso !== 'nenhum' ? `<p><strong>Concurso:</strong> ${concurso} (${numeroCrimes} crimes)</p>` : ''}
+                    </div>
+                    
+                    <div class="code-block">
+                        <strong>Súmula 440 STJ:</strong> Fixada a pena-base no mínimo legal, é vedado o estabelecimento de regime prisional mais gravoso com base apenas na gravidade abstrata do delito.
+                    </div>
                 </div>
             `;
             resultado.classList.add('show');
-            
-            showToast();
+            showToast('Dosimetria calculada com base na jurisprudência do STJ!');
         });
 
-        // Calculadora SELIC
-        document.getElementById('formSelic').addEventListener('submit', function(e) {
+        // Calculadora de Correção Monetária Avançada
+        document.getElementById('formCorrecao').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const tipoCalculo = document.getElementById('tipoCalculo').value;
+            const indice = document.getElementById('indiceCorrecao').value;
             const valorOriginal = parseFloat(document.getElementById('valorOriginal').value);
-            const dataInicial = new Date(document.getElementById('dataInicial').value);
+            const dataEvento = new Date(document.getElementById('dataEvento').value);
+            const dataCitacao = document.getElementById('dataCitacao').value ? new Date(document.getElementById('dataCitacao').value) : null;
             const dataFinal = new Date(document.getElementById('dataFinal').value);
-            const aplicarMulta = document.getElementById('multa523').checked;
             
-            const diasCorridos = Math.floor((dataFinal - dataInicial) / (1000 * 60 * 60 * 24));
-            const mesesCorridos = diasCorridos / 30;
-            const taxaMensal = 0.01;
-            const valorCorrigido = valorOriginal * Math.pow(1 + taxaMensal, mesesCorridos);
-            
-            let valorFinal = valorCorrigido;
-            let detalhesMulta = '';
-            
-            if (aplicarMulta) {
-                const multa = valorCorrigido * 0.10;
-                valorFinal += multa;
-                detalhesMulta = `<br>→ Multa Art. 523 CPC (10%): R$ ${multa.toFixed(2)}`;
-            }
-            
-            const resultado = document.getElementById('resultadoSelic');
-            resultado.innerHTML = `
-                <div class="result-title">
-                    <span>💰</span>
-                    <span>Atualização Monetária</span>
-                </div>
-                <div class="result-content">
-                    → Valor Original: R$ ${valorOriginal.toFixed(2)}<br>
-                    → Período: ${diasCorridos} dias (${mesesCorridos.toFixed(1)} meses)<br>
-                    → Valor Corrigido: R$ ${valorCorrigido.toFixed(2)}${detalhesMulta}<br>
-                    <strong>→ TOTAL FINAL: R$ ${valorFinal.toFixed(2)}</strong><br>
-                    <br>
-                    <small>💡 Taxa SELIC atualizada via API Banco Central</small>
-                </div>
-            `;
-            resultado.classList.add('show');
-        });
-
-        // Validador de Documentos
-        document.getElementById('formValidador').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const arquivo = document.getElementById('arquivo').files[0];
-            const hashOriginal = document.getElementById('hashOriginal').value;
-            
-            if (arquivo) {
-                const reader = new FileReader();
-                reader.onload = async function(event) {
-                    const buffer = event.target.result;
-                    const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-                    const hashArray = Array.from(new Uint8Array(hashBuffer));
-                    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-                    
-                    let validacao = '';
-                    if (hashOriginal && hashOriginal.toLowerCase() === hashHex) {
-                        validacao = '<span style="color: #00A86B;">✅ DOCUMENTO ÍNTEGRO E VÁLIDO</span>';
-                    } else if (hashOriginal) {
-                        validacao = '<span style="color: #E74C3C;">❌ DOCUMENTO ALTERADO</span>';
-                    } else {
-                        validacao = '<span style="color: #F39C12;">⚠️ Hash gerado para validação futura</span>';
-                    }
-                    
-                    const resultado = document.getElementById('resultadoValidacao');
-                    resultado.innerHTML = `
-                        <div class="result-title">
-                            <span>🔐</span>
-                            <span>Validação Blockchain</span>
-                        </div>
-                        <div class="result-content">
-                            → Arquivo: ${arquivo.name}<br>
-                            → Tamanho: ${(arquivo.size / 1024).toFixed(2)} KB<br>
-                            → Hash SHA-256:<br>
-                            <small style="word-break: break-all;">${hashHex}</small><br>
-                            <br>
-                            <strong>Status: ${validacao}</strong><br>
-                            <br>
-                            <small>💡 Hash registrado na blockchain</small>
-                        </div>
-                    `;
-                    resultado.classList.add('show');
-                };
-                reader.readAsArrayBuffer(arquivo);
-            }
-        });
-
-        // Gerador de Minutas
-        document.getElementById('formMinutas').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const tipoPeca = document.getElementById('tipoPeca').value;
-            const numeroProcesso = document.getElementById('numeroProcesso').value;
-            const resumoCaso = document.getElementById('resumoCaso').value;
-            
-            const resultado = document.getElementById('resultadoMinuta');
-            resultado.innerHTML = `
-                <div class="result-title">
-                    <span>📄</span>
-                    <span>Minuta Gerada</span>
-                </div>
-                <div class="result-content">
-                    <strong>PROCESSO Nº ${numeroProcesso}</strong><br><br>
-                    <strong>VISTOS.</strong><br><br>
-                    ${resumoCaso}<br><br>
-                    <strong>DECIDO.</strong><br><br>
-                    [Fundamentação gerada por IA...]<br><br>
-                    <strong>DISPOSITIVO</strong><br>
-                    Ante o exposto, com fundamento no art. 487, I, do CPC...<br><br>
-                    <strong>P.R.I.</strong><br><br>
-                    Tauá/CE, ${new Date().toLocaleDateString('pt-BR')}<br><br>
-                    <small>💡 Minuta gerada com IA treinada em 50.000 decisões</small>
-                </div>
-            `;
-            resultado.classList.add('show');
-        });
-
-        // Analisador de Jurisprudência
-        document.getElementById('formJurisprudencia').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const tema = document.getElementById('temaJuridico').value;
-            const tribunal = document.getElementById('tribunal').value.toUpperCase();
-            
-            const resultado = document.getElementById('resultadoJurisprudencia');
-            resultado.innerHTML = `
-                <div class="result-title">
-                    <span>📚</span>
-                    <span>Precedentes Encontrados</span>
-                </div>
-                <div class="result-content">
-                    <strong>🎯 ${tribunal} - REsp 1.234.567/BA</strong><br>
-                    ${tema.toUpperCase()}. Configuração. Precedente vinculante.<br>
-                    Rel. Min. Exemplo - 15/03/2024<br><br>
-                    
-                    <strong>🎯 ${tribunal} - AgRg 987.654/CE</strong><br>
-                    ${tema.toUpperCase()}. Quantum. Razoabilidade.<br>
-                    Rel. Min. Teste - 22/06/2024<br><br>
-                    
-                    <small>💡 Busca neural em 2.5 milhões de acórdãos</small>
-                </div>
-            `;
-            resultado.classList.add('show');
-        });
-
-        // Calculadora de Prescrição
-        document.getElementById('formPrescricao').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const penaMaxima = parseInt(document.getElementById('penaMaximaPrescricao').value);
-            const dataFato = new Date(document.getElementById('dataFato').value);
-            
-            let prazoPrescricao = penaMaxima < 1 ? 3 : 
-                                 penaMaxima <= 2 ? 4 : 
-                                 penaMaxima <= 4 ? 8 : 
-                                 penaMaxima <= 8 ? 12 : 16;
-            
-            const dataPrescricao = new Date(dataFato);
-            dataPrescricao.setFullYear(dataPrescricao.getFullYear() + prazoPrescricao);
-            
-            const hoje = new Date();
-            const prescrito = hoje > dataPrescricao;
-            
-            const resultado = document.getElementById('resultadoPrescricao');
-            resultado.innerHTML = `
-                <div class="result-title">
-                    <span>⏰</span>
-                    <span>Análise de Prescrição</span>
-                </div>
-                <div class="result-content">
-                    → Prazo: ${prazoPrescricao} anos<br>
-                    → Data do Fato: ${dataFato.toLocaleDateString('pt-BR')}<br>
-                    → Prescreve em: ${dataPrescricao.toLocaleDateString('pt-BR')}<br>
-                    → Status: <strong>${prescrito ? '❌ PRESCRITO' : '✅ NÃO PRESCRITO'}</strong><br>
-                    ${!prescrito ? `→ Faltam ${Math.floor((dataPrescricao - hoje) / (1000 * 60 * 60 * 24))} dias` : ''}<br>
-                    <br>
-                    <small>💡 Alertas automáticos 30 dias antes</small>
-                </div>
-            `;
-            resultado.classList.add('show');
-        });
-
-        // Classificador de Contratos
-        document.getElementById('contratos').addEventListener('change', function(e) {
-            const files = e.target.files;
-            if (files.length > 0) {
-                const preview = document.getElementById('preview-arquivos');
-                const lista = document.getElementById('lista-arquivos');
-                
-                let html = '';
-                for (let i = 0; i < files.length; i++) {
-                    html += `<div class="file-item">📄 ${files[i].name}</div>`;
-                }
-                
-                lista.innerHTML = html;
-                preview.style.display = 'block';
-            }
-        });
-
-        // Função para extrair texto do PDF
-        async function extrairTextoPDF(file) {
-            try {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-                let textCompleto = '';
-                
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    const page = await pdf.getPage(i);
-                    const textContent = await page.getTextContent();
-                    const pageText = textContent.items.map(item => item.str).join(' ');
-                    textCompleto += pageText + '\n';
-                }
-                
-                return textCompleto;
-            } catch (error) {
-                console.error('Erro ao ler PDF:', error);
-                return '';
-            }
-        }
-
-        // Função para analisar o conteúdo e classificar
-        function classificarContrato(texto, nomeArquivo) {
-            const textoLower = texto.toLowerCase();
-            
-            const palavrasSindicato = [
-                'sindicato',
-                'convenção coletiva',
-                'acordo coletivo',
-                'categoria profissional',
-                'assembleia geral',
-                'representação sindical',
-                'contribuição sindical',
-                'cláusula coletiva'
-            ];
-            
-            const palavrasPessoaFisica = [
-                'contrato individual',
-                'pessoa física',
-                'cpf',
-                'empregado',
-                'contratado',
-                'prestador de serviços'
-            ];
-            
-            let scoreSindicato = 0;
-            let scorePessoa = 0;
-            
-            palavrasSindicato.forEach(palavra => {
-                if (textoLower.includes(palavra)) {
-                    scoreSindicato += 2;
-                }
-            });
-            
-            palavrasPessoaFisica.forEach(palavra => {
-                if (textoLower.includes(palavra)) {
-                    scorePessoa += 1;
-                }
-            });
-            
-            const classificacao = {
-                tipo: scoreSindicato > scorePessoa ? 'B' : 'A',
-                confianca: Math.abs(scoreSindicato - scorePessoa) / Math.max(scoreSindicato, scorePessoa, 1),
-                scoreSindicato,
-                scorePessoa
+            // Taxas mensais aproximadas
+            const taxas = {
+                selic: 0.011,
+                ipca: 0.008,
+                igpm: 0.009,
+                inpc: 0.007,
+                tr: 0.005,
+                poupanca: 0.006
             };
             
-            return classificacao;
-        }
-
-        // Função principal do classificador
-        document.getElementById('formClassificador').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const files = document.getElementById('contratos').files;
-            const processando = document.getElementById('processando-classificacao');
-            const resultado = document.getElementById('resultadoClassificacao');
-            const barraProgresso = document.getElementById('barra-progresso');
-            const statusTexto = document.getElementById('status-processamento');
-            
-            processando.style.display = 'block';
-            resultado.style.display = 'none';
-            
-            let contratosTipoA = [];
-            let contratosTipoB = [];
-            
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const progresso = ((i + 1) / files.length) * 100;
-                barraProgresso.style.width = progresso + '%';
-                statusTexto.textContent = `Analisando arquivo ${i + 1} de ${files.length}: ${file.name}`;
-                
-                const texto = await extrairTextoPDF(file);
-                const classificacao = classificarContrato(texto, file.name);
-                
-                if (classificacao.tipo === 'A') {
-                    contratosTipoA.push({
-                        nome: file.name,
-                        classificacao
-                    });
-                } else {
-                    contratosTipoB.push({
-                        nome: file.name,
-                        classificacao
-                    });
-                }
-                
-                await new Promise(resolve => setTimeout(resolve, 300));
-            }
-            
-            processando.style.display = 'none';
-            mostrarResultadosClassificacao(contratosTipoA, contratosTipoB, files.length);
-        });
-
-        // Função para mostrar resultados
-        function mostrarResultadosClassificacao(tipoA, tipoB, total) {
-            const resultado = document.getElementById('resultadoClassificacao');
-            
-            resultado.innerHTML = `
-                <div class="result-title">
-                    <span>🎯</span>
-                    <span>Classificação Concluída - ${total} Contratos Analisados</span>
-                </div>
-                
-                <div class="classifier-grid">
-                    <div class="classifier-result type-a">
-                        <h4 class="classifier-title">
-                            <span>✅</span>
-                            <span>TIPO A - Contratos Válidos (${tipoA.length})</span>
-                        </h4>
-                        <p style="color: var(--cinza-medio); margin-bottom: 10px;">
-                            Título executivo válido - Citar para pagamento
-                        </p>
-                        <div class="file-list">
-                            ${tipoA.length > 0 ? tipoA.map(c => `
-                                <div class="file-item">
-                                    <strong>📄 ${c.nome}</strong><br>
-                                    <small>Confiança: ${(c.classificacao.confianca * 100).toFixed(0)}%</small>
-                                </div>
-                            `).join('') : '<div>Nenhum contrato nesta categoria</div>'}
-                        </div>
-                        ${tipoA.length > 0 ? `
-                            <button class="btn btn-success btn-full" onclick="gerarDespachosCitacao()" style="margin-top: 15px;">
-                                📝 GERAR DESPACHOS DE CITAÇÃO
-                            </button>
-                        ` : ''}
-                    </div>
-                    
-                    <div class="classifier-result type-b">
-                        <h4 class="classifier-title">
-                            <span>❌</span>
-                            <span>TIPO B - Contratos Sindicais (${tipoB.length})</span>
-                        </h4>
-                        <p style="color: var(--cinza-medio); margin-bottom: 10px;">
-                            Sem título executivo - Extinguir execução
-                        </p>
-                        <div class="file-list">
-                            ${tipoB.length > 0 ? tipoB.map(c => `
-                                <div class="file-item">
-                                    <strong>📄 ${c.nome}</strong><br>
-                                    <small>Confiança: ${(c.classificacao.confianca * 100).toFixed(0)}%</small>
-                                </div>
-                            `).join('') : '<div>Nenhum contrato nesta categoria</div>'}
-                        </div>
-                        ${tipoB.length > 0 ? `
-                            <button class="btn btn-primary btn-full" onclick="gerarSentencasExtincao()" style="margin-top: 15px;">
-                                ⚖️ GERAR SENTENÇAS DE EXTINÇÃO
-                            </button>
-                        ` : ''}
-                    </div>
-                </div>
-            `;
-            
-            resultado.style.display = 'block';
-            resultado.classList.add('show');
-            resultado.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function gerarDespachosCitacao() {
-            const despacho = `
-                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; font-family: 'Times New Roman', serif; box-shadow: 0 2px 10px var(--sombra-leve);">
-                    <h4 style="text-align: center; margin-bottom: 20px; color: var(--azul-brasil);">DESPACHO</h4>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>Vistos.</strong>
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Trata-se de <strong>EXECUÇÃO DE TÍTULO EXTRAJUDICIAL</strong>, com pedido de citação do executado 
-                        para pagamento do débito.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Analisando os autos, verifico que a petição inicial preenche os requisitos do art. 798 do CPC, 
-                        estando instruída com título executivo extrajudicial dotado de liquidez, certeza e exigibilidade, 
-                        nos termos do art. 783 do CPC.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>Ante o exposto, DEFIRO o processamento da execução.</strong>
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>1.</strong> <strong>CITE-SE</strong> o(a) executado(a) para, no prazo de <strong>03 (três) dias</strong>, 
-                        contado da citação, efetuar o pagamento da dívida, no valor de <strong>R$ _________</strong>, 
-                        acrescida de custas e honorários advocatícios, estes fixados em 10% (dez por cento) do valor da execução, 
-                        nos termos do art. 827 do CPC.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>2.</strong> Fica o(a) executado(a) <strong>ADVERTIDO(A)</strong> de que:
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 1.8; margin-left: 80px;">
-                        a) No caso de integral pagamento no prazo de 03 (três) dias, o valor dos honorários 
-                        advocatícios será reduzido pela metade (art. 827, §1º, CPC);<br><br>
-                        
-                        b) Decorrido o prazo sem pagamento, será realizada a <strong>PENHORA</strong> de bens 
-                        do executado, tantos quantos bastem para a garantia da execução (art. 829, CPC);<br><br>
-                        
-                        c) Transcorrido o prazo de 03 (três) dias sem pagamento, começará a correr o prazo 
-                        de 15 (quinze) dias para que o executado, independentemente de penhora ou nova intimação, 
-                        apresente, nos próprios autos, <strong>EMBARGOS À EXECUÇÃO</strong> (art. 915, CPC);<br><br>
-                        
-                        d) Os embargos não terão efeito suspensivo (art. 919, CPC).
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>3.</strong> Caso não seja localizado o executado, proceda-se ao <strong>ARRESTO</strong> 
-                        de tantos bens quantos bastem para garantir a execução, seguindo-se o disposto no art. 830 do CPC.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>4.</strong> Para as diligências, fica desde já <strong>DEFERIDA</strong> a expedição de 
-                        certidão comprobatória do ajuizamento da execução (art. 828, CPC), bem como autorizada a 
-                        utilização das ferramentas eletrônicas disponíveis (SISBAJUD, RENAJUD, INFOJUD).
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>Cumpra-se. Intimem-se.</strong>
-                    </p>
-                    
-                    <p style="text-align: right; margin-top: 30px;">
-                        Tauá/CE, ${new Date().toLocaleDateString('pt-BR', {day: '2-digit', month: 'long', year: 'numeric'})}
-                    </p>
-                    
-                    <p style="text-align: center; margin-top: 40px;">
-                        _______________________________________<br>
-                        <strong>Sérgio Augusto Furtado Neto Viana</strong><br>
-                        <strong>Juiz de Direito Titular do Juizado Especial</strong><br>
-                        <strong>Comarca de Tauá</strong>
-                    </p>
-                    
-                    <div style="margin-top: 30px; padding: 15px; background: #e8f5e9; border-left: 4px solid var(--verde-tech); border-radius: 5px;">
-                        <p style="font-size: 0.9em; color: var(--cinza-escuro);"><strong>Observação:</strong> Este despacho foi gerado automaticamente 
-                        pelo sistema JustiçAÍ com base na análise do título executivo extrajudicial apresentado.</p>
-                    </div>
-                </div>
-            `;
-            
-            // Criar um novo elemento para mostrar o despacho
-            const resultadoArea = document.getElementById('resultadoClassificacao');
-            const despachoDiv = document.createElement('div');
-            despachoDiv.innerHTML = despacho;
-            resultadoArea.appendChild(despachoDiv);
-            
-            // Scroll suave para o despacho
-            despachoDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            showToast();
-        }
-
-        function gerarSentencasExtincao() {
-            const sentenca = `
-                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; font-family: 'Times New Roman', serif; box-shadow: 0 2px 10px var(--sombra-leve);">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <h4 style="color: var(--azul-brasil);">SENTENÇA</h4>
-                        <p style="margin-top: 10px;">Processo nº: _____________<br>
-                        Classe: EXECUÇÃO DE TÍTULO EXTRAJUDICIAL<br>
-                        Exequente: _____________<br>
-                        Executado(a): _____________</p>
-                    </div>
-                    
-                    <p style="text-align: center; font-weight: bold; margin: 20px 0;">
-                        SENTENÇA
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>Vistos, etc.</strong>
-                    </p>
-                    
-                    <h5 style="margin: 20px 0; color: var(--azul-brasil);">I - RELATÓRIO</h5>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Trata-se de <strong>AÇÃO DE EXECUÇÃO DE TÍTULO EXTRAJUDICIAL</strong> proposta por 
-                        <strong>_______________</strong> em face de <strong>_______________</strong>, 
-                        na qual o exequente pretende o recebimento de valores supostamente devidos.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        O exequente fundamenta seu pedido em contrato/instrumento firmado entre a parte credora e 
-                        <strong>ENTIDADE SINDICAL</strong>, pretendendo executar diretamente pessoa que não 
-                        figura como parte no título apresentado.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        É o relatório. <strong>DECIDO.</strong>
-                    </p>
-                    
-                    <h5 style="margin: 20px 0; color: var(--azul-brasil);">II - FUNDAMENTAÇÃO</h5>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        A execução de título extrajudicial pressupõe a existência de documento que constitua 
-                        título executivo nos termos do art. 784 do Código de Processo Civil, dotado dos 
-                        atributos de liquidez, certeza e exigibilidade.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Além dos requisitos intrínsecos do título, é fundamental que exista 
-                        <strong>legitimidade passiva</strong>, ou seja, que o executado seja efetivamente 
-                        parte na relação jurídica documentada no título executivo.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        No caso em análise, verifica-se que o título apresentado consiste em 
-                        contrato/instrumento celebrado entre o exequente e <strong>SINDICATO</strong>, 
-                        entidade que atua como representante de categoria profissional.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Ocorre que <strong>o sindicato, quando celebra contratos em nome próprio, não 
-                        vincula individualmente os integrantes da categoria</strong>. A relação jurídica 
-                        estabelecida é entre as partes contratantes - exequente e sindicato - não se 
-                        estendendo automaticamente aos associados ou membros da categoria profissional.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        A jurisprudência é pacífica neste sentido:
-                    </p>
-                    
-                    <div style="margin: 20px 40px; padding: 15px; background: #f8f9fa; border-left: 3px solid var(--azul-brasil);">
-                        <p style="font-style: italic; text-align: justify; line-height: 1.8;">
-                            "O contrato firmado pelo sindicato, atuando em nome próprio, não constitui título 
-                            executivo contra os associados individualmente considerados, sendo necessária a 
-                            participação direta do devedor na formação do título para que este possa ser 
-                            executado em seu desfavor." (STJ, REsp 1.234.567/SP)
-                        </p>
-                    </div>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Ademais, o art. 784 do CPC estabelece taxativamente quais documentos são considerados 
-                        títulos executivos extrajudiciais, sendo que contratos firmados por terceiros em 
-                        suposta representação não se enquadram em nenhuma das hipóteses legais quando 
-                        ausente a participação direta do executado.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Portanto, <strong>não há título executivo hábil</strong> a embasar a presente execução 
-                        contra o(a) executado(a), que não participou da formação do instrumento apresentado, 
-                        impondo-se a extinção do processo sem resolução de mérito.
-                    </p>
-                    
-                    <h5 style="margin: 20px 0; color: var(--azul-brasil);">III - DISPOSITIVO</h5>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>ANTE O EXPOSTO</strong>, com fundamento no art. 485, IV e VI, do Código de 
-                        Processo Civil, <strong>JULGO EXTINTA A PRESENTE EXECUÇÃO</strong>, sem resolução 
-                        de mérito, ante a <strong>AUSÊNCIA DE TÍTULO EXECUTIVO EXTRAJUDICIAL</strong> apto 
-                        a fundamentar a pretensão executória em face do(a) executado(a).
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>CONDENO</strong> o exequente ao pagamento das custas processuais e honorários 
-                        advocatícios, estes que fixo em 10% (dez por cento) sobre o valor atualizado da causa, 
-                        nos termos do art. 85, §2º, do CPC.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        Certificado o trânsito em julgado, arquivem-se os autos com as baixas e anotações de estilo.
-                    </p>
-                    
-                    <p style="text-align: justify; line-height: 2; text-indent: 50px;">
-                        <strong>Publique-se. Registre-se. Intimem-se.</strong>
-                    </p>
-                    
-                    <p style="text-align: right; margin-top: 30px;">
-                        Tauá/CE, ${new Date().toLocaleDateString('pt-BR', {day: '2-digit', month: 'long', year: 'numeric'})}
-                    </p>
-                    
-                    <p style="text-align: center; margin-top: 40px;">
-                        _______________________________________<br>
-                        <strong>Sérgio Augusto Furtado Neto Viana</strong><br>
-                        <strong>Juiz de Direito Titular do Juizado Especial Cível e Criminal</strong><br>
-                        <strong>Comarca de Tauá</strong>
-                    </p>
-                    
-                    <div style="margin-top: 30px; padding: 15px; background: #ffebee; border-left: 4px solid #E74C3C; border-radius: 5px;">
-                        <p style="font-size: 0.9em; color: var(--cinza-escuro);">
-                            <strong>Nota:</strong> Esta sentença foi gerada automaticamente pelo sistema JustiçAÍ 
-                            após análise do documento apresentado, que identificou tratar-se de contrato firmado 
-                            com entidade sindical, não constituindo título executivo contra terceiros.
-                        </p>
-                    </div>
-                </div>
-            `;
-            
-            // Criar um novo elemento para mostrar a sentença
-            const resultadoArea = document.getElementById('resultadoClassificacao');
-            const sentencaDiv = document.createElement('div');
-            sentencaDiv.innerHTML = sentenca;
-            resultadoArea.appendChild(sentencaDiv);
-            
-            // Scroll suave para a sentença
-            sentencaDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            showToast();
-        }
-
-        // Animações ao carregar
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => showToast(), 1000);
-        });
-    </script>
-</body>
-</html>
+            const taxaMensal = taxas[indice];
+            const meses = Math.floor((dataFinal - dataEvento) / (1000 * 60 * 60 * 24 * 30));
+            const mesesJuros = dataCitacao ? Math.floor((dataF
